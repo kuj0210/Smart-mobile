@@ -18,7 +18,7 @@
 * [Settings & Installation](#settings--installation)
   * [Settings](#settings)
   * [Installation](#installation)
-* [Pet House Structure](#pet-house-structure)
+* [Mobile Structure](#Mobile Structure)
 * [Motor operation structure](#motor-operation-structure)
 * [Client & Server Structure](#client--server-structure)
   * [Full server structure](#full-server-structure)
