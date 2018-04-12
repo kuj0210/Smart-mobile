@@ -37,8 +37,7 @@ for 2018 KIT Creative Design project
 Parents are always with their babies while raising their children. But they don't always have to stick for 24 hours. our system will keep you company with your baby even if you stay away from me for a while, like going to the bathroom or throwing away trash in front of me.
 
 
-##  <img src = "https://image.flaticon.com/icons/svg/321/321777.svg" width=60 > **Features**
-
+## <img src = "https://image.flaticon.com/icons/svg/321/321777.svg" width=60 > **Features**
 
  - Usage through Messenger
  - Raspberry Pi with chat-bot based System
@@ -47,8 +46,7 @@ Parents are always with their babies while raising their children. But they don'
  - You can check the status of your baby by using mobile system
 
 
-## **Requirement**
-<img src = "https://image.flaticon.com/icons/svg/715/715585.svg" width=60 >
+## <img src = "https://image.flaticon.com/icons/svg/715/715585.svg" width=60 > **Requirement**
 
  - Raspnerry Pi 3 module B (used in Pi Server)
  - 3 servo-motors(for meal,water,door) and PiCamera
@@ -57,16 +55,15 @@ Parents are always with their babies while raising their children. But they don'
 
 ## **Settings & Installation**
 
-### **Settings** 
-<img src = "https://image.flaticon.com/icons/svg/138/138849.svg" width=60 >
+### <img src = "https://image.flaticon.com/icons/svg/138/138849.svg" width=60 > **Settings** 
+
 
  - Using 2 static ip address.
  - Main server is in AWS.(This server manage chat-bot API.)
  - PiServer is in RaspberryPi (This server manage RaspberryPi)
  - Using python 3.x version. Because Hangul generate error with uni-code/utf8.
  
-### **Installation** 
-<img src = "https://image.flaticon.com/icons/svg/138/138601.svg" width=60 >
+### " width=60 > https://image.flaticon.com/icons/svg/138/138601.svg" width=60 > **Installation** 
 
  **1) Server side**
   - Install MySQL.
