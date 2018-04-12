@@ -3,7 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/licence-GPL%20v3-yellow.svg)](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/LICENSE)
 <img src="https://img.shields.io/badge/python-%3E%3D3-brightgreen.svg">
 <br/>
-<img src ="http://cafefiles.naver.net/20130114_149/qkrwoduda_1358136413932XhVpY_JPEG/%B1%DD%BF%C0%B0%F8%B0%FA%B4%EB%C7%D0%B1%B3%B7%CE%B0%ED3.jpg" width =70>
+<img src ="http://cafefiles.naver.net/20130114_149/qkrwoduda_1358136413932XhVpY_JPEG/%B1%DD%BF%C0%B0%F8%B0%FA%B4%EB%C7%D0%B1%B3%B7%CE%B0%ED3.jpg" width =100>
 <br/>
 for 2018 KIT Creative Design project 
 
