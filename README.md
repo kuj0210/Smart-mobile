@@ -3,13 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/licence-GPL%20v3-yellow.svg)](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/LICENSE)
 <img src="https://img.shields.io/badge/python-%3E%3D3-brightgreen.svg">
 <br/>
-### Smart mobile system for my baby with naver-talk-talk messenger
-
-
-
-
-
-
+### Smart mobile system for my baby with naver-talk-talk messenge
 
 ## Index
 * [Introduction](#introduction)
@@ -18,8 +12,8 @@
 * [Settings & Installation](#settings--installation)
   * [Settings](#settings)
   * [Installation](#installation)
-* [Mobile Structure](#Mobile Structure)
-* [Motor operation structure](#motor-operation-structure)
+* [Mobile-Structure](#Mobile-Structure)
+* [operation-structure](#operation-structure)
 * [Client & Server Structure](#client--server-structure)
   * [Full server structure](#full-server-structure)
   * [Client & Main server structure](#client--main-server-structure)
@@ -90,11 +84,11 @@ Parents are always with their babies while raising their children. But they don'
   sudo pip3 install requests
   ```
 
-## **Mobile Structure**
+## **Mobile-Structure**
 Preparing
 
 
-## **operation structure** 
+## **operation-structure** 
 Preparing
 
 
