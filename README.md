@@ -13,7 +13,7 @@ for 2018 KIT Creative Design project
 
 ## Index
 * [Introduction](#introduction)
-* [Features](#features)
+* [Features](#-features)
 * [Requirement](#requirement)
 * [Settings & Installation](#settings--installation)
   * [Settings](#settings)
