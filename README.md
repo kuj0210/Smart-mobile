@@ -53,9 +53,9 @@ Parents are always with their babies while raising their children. But they don'
  - Computer or Notebook(used to chat-bot API Server)
  - Smart Phone for using chat-bot(used in client)
 
-## **Settings & Installation**
+## <img src = "https://image.flaticon.com/icons/svg/138/138849.svg" width=60 > **Settings & Installation**
 
-### <img src = "https://image.flaticon.com/icons/svg/138/138849.svg" width=60 > **Settings** 
+### **Settings** 
 
 
  - Using 2 static ip address.
@@ -63,7 +63,7 @@ Parents are always with their babies while raising their children. But they don'
  - PiServer is in RaspberryPi (This server manage RaspberryPi)
  - Using python 3.x version. Because Hangul generate error with uni-code/utf8.
  
-### <img src= "https://image.flaticon.com/icons/svg/138/138601.svg" width=60 > **Installation** 
+### **Installation** 
 
  **1) Server side**
   - Install MySQL.
