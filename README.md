@@ -26,9 +26,7 @@ for 2018 KIT Creative Design project
   * [Main server & Pi-server structure](#main-server--pi-server-structure)
 * [How to use](#how-to-use)
 * [How to connect motor wires](#how-to-connect-motor-wires)
-  * [Food Motor](#food-motor)
-  * [Water Motor](#water-motor)
-  * [Door Motor](#door-motor)
+  * [sensor](#sensor)
 * [Notes](#notes)
 * [LICENSE](#license)
 
@@ -135,7 +133,7 @@ Preparing
 Preparing
 
 
-### sensor's
+### **sensor**
 
 - Orange wired: 
 - Red wired: 
