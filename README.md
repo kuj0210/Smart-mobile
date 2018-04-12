@@ -3,7 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/licence-GPL%20v3-yellow.svg)](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/LICENSE)
 <img src="https://img.shields.io/badge/python-%3E%3D3-brightgreen.svg">
 <br/>
-### Smart mobile system for my baby with naver-talk-talk messenge
+### Smart mobile system for my baby with naver-talk-talk messenger
 
 ## Index
 * [Introduction](#introduction)
