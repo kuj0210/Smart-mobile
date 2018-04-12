@@ -5,7 +5,7 @@
 <br/>
 ### Smart mobile system for my baby with naver-talk-talk messenger
 for 2018 KIT Creative Design project<br/>
-*[<img src = "https://user-images.githubusercontent.com/33398268/38656619-37ddd6ea-3e0b-11e8-93a5-8402d948d6a6.png" width=256 >](#www.kumoh.ac.kr)
+<img src = "https://user-images.githubusercontent.com/33398268/38656619-37ddd6ea-3e0b-11e8-93a5-8402d948d6a6.png" width=256 >
 
 
 
