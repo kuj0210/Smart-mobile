@@ -41,8 +41,7 @@ Parents are always with their babies while raising their children. But they don'
  - Raspberry Pi with chat-bot based System
  - Using communication with flask server
  - Using 2 flask servers.(Main Server(in aws), PiServer(in raspberryPi))
- - You can check the status of your pet with PiCamera
- - You can manage meal and to give water to your pet(s).
+ - You can check the status of your baby by using mobile system
 
 
 ## **Requirement**
@@ -90,22 +89,12 @@ Parents are always with their babies while raising their children. But they don'
   sudo pip3 install requests
   ```
 
-## **Pet House Structure**
-
-![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/Pet_House_Structure.png?raw=true)
-
-Three motors are operated by messenger, and manage feeds, water and door.<br>
-And you can see the pet directly through the Pi Camera.
+## **Mobile Structure**
+Preparing
 
 
-## **Motor operation structure** 
-
-| Food | Water |
-| :----: | :----: |
-| ![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/motor_food.png?raw=true) <br> Rotate and restore the motor for a short time, and feed the prey by opening and closing the entrance  | ![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/motor_water.png?raw=true) <br> Water is given by folding or unfolding the tube with the motor |
-**Door(open)** | **Door(close)**
-|![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/motor_open.png?raw=true) <br> Open the door by pulling the thread by the rotation of the motor | ![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/motor_close.png?raw=true) <br> When the motor stops, the door is closed by the resilience of the weight. |
-
+## **operation structure** 
+Preparing
 
 
 ## **Client & Server Structure**
@@ -114,10 +103,9 @@ And you can see the pet directly through the Pi Camera.
 
 ![](https://github.com/kuj0210/opensourceproject/blob/master/.README/Client&Server_Structure.png?raw=true)
 
-
 - Client: The client represents a user using messanger application.
 - Server(Main Server): This server is main of full structure. It manage chatbot and commands for controlling PiServer.
-- PiServer(RaspberryPi): This server manage to control motors, camera and push thread.
+- PiServer(RaspberryPi): This server manage to control mobile
 
 
 ### **Client & Main server structure**
@@ -138,73 +126,17 @@ This structure is main-server and pi-server(in RaspberryPi using flask framework
 
 
 ## **How to use**
+Preparing
+
+## **How to connect wires for sensor**
+Preparing
 
 
-**1) Add Official account of Messanger(IoT Pet House System)**
+### sensor's
 
- - kakao-talk platform: @guineapighome (IoT 펫홈 관리 시스템)<br> 
- - naver-talktalk platform: IoT 펫홈 시스템
-
-![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/chatbot_first.PNG?raw=true)
-
-
-**2) Enter chat in the format “[등록]/e-mail/Product-Key”**
-
- Check your device's product-key, and regist your email and product-key to chatbot-server.<br>
- If you don't regist, chatbot-server don't support your command. 
- 
-![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/chatbot_regist.PNG?raw=true)
-
-
-**3) Enter chats that associated with food, water and door opening.**
-
-If you're a registed user, you can do chatting with IoT-pet-home-system!<br>
-Order to set feed, water or open pet-home door at the IoT-pet-home-system chatbot.
-
-![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/chatbot_operation.PNG?raw=true)
-
-
-**4) If you don't know how to use or need to remind your account, please enter the command below.**
-
-- "[사용법]" : This command will inform how to use this chatbot.<br>
-- "[정보]" : This command will inform your account that you registed at this chatbot-server.
-
-![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/chatbot_etc.PNG?raw=true)
-
-
-**5) If you forget to feed or set water to your pet, chatbot's push service support you!**
-
-- If you don't set feed or water to your pet, push alarm inform to you once an hour.
-- But this service only support at naver-talk-talk platform. (Kakao-talk platform don't support it.)
-
-![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/chatbot_push.PNG?raw=true)
-     
-
-
-
-## **How to connect motor wires**
-
-![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/raspberry-pi-pinout.png?raw=true)
-
-
-### Food Motor
-
-- Orange wired: connects to pin 35
-- Red wired: connects to 3v3 or 5v pin(one of pin 1, 2, 4, 17)
-- Brown wired: connects to GND pin(one of pin 6, 9, 14, 20, 25, 30, 34, 39)
-
-### Water Motor
-
-- Orange wired: connects to pin 32
-- Red wired: connects to 3v3 or 5v pin(one of pin 1, 2, 4, 17)
-- Brown wired: connects to GND pin(one of pin 6, 9, 14, 20, 25, 30, 34, 39)
-
-### Door Motor
-
-- Orange wired: connects to pin 12
-- Red wired: connects to 3v3 or 5v pin(one of pin 1, 2, 4, 17)
-- Brown wired: connects to GND pin(one of pin 6, 9, 14, 20, 25, 30, 34, 39)
-
+- Orange wired: 
+- Red wired: 
+- Brown wired: 
 
 
  ## **Notes**
@@ -224,7 +156,7 @@ Order to set feed, water or open pet-home door at the IoT-pet-home-system chatbo
 
  ## **LICENSE**
  
- IoT-Pet-Home-System is licensed under [the GNU GENERAL PUBLIC LICENSE v3](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/LICENSE).
+Smart mobile is licensed under [the GNU GENERAL PUBLIC LICENSE v3](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/LICENSE).
  
  ```
  Copyright (C) 2017-present, kuj0210, KeonHeeLee, seok8418
