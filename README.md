@@ -12,7 +12,7 @@
 * [Settings & Installation](#settings--installation)
   * [Settings](#settings)
   * [Installation](#installation)
-* [Mobile-Structure](#mobile-Structure)
+* [Mobile-Structure](#mobile-structure)
 * [operation-structure](#operation-structure)
 * [Client & Server Structure](#client--server-structure)
   * [Full server structure](#full-server-structure)
