@@ -59,6 +59,7 @@ Parents are always with their babies while raising their children. But they don'
 ## **Settings & Installation**
 
 ### **Settings** 
+<img src = "https://image.flaticon.com/icons/svg/138/138849.svg" width=60 >
 
  - Using 2 static ip address.
  - Main server is in AWS.(This server manage chat-bot API.)
@@ -66,7 +67,7 @@ Parents are always with their babies while raising their children. But they don'
  - Using python 3.x version. Because Hangul generate error with uni-code/utf8.
  
 ### **Installation**
-<img src = "https://image.flaticon.com/icons/svg/189/189074.svg" width=60 >
+<img src = "https://image.flaticon.com/icons/svg/138/138601.svg" width=60 >
 
  **1) Server side**
   - Install MySQL.
