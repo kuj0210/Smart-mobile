@@ -34,7 +34,7 @@ for 2018 Creative Design
 ## Introduction
 
 Parents are always with their babies while raising their children. But they don't always have to stick for 24 hours. our system will keep you company with your baby even if you stay away from me for a while, like going to the bathroom or throwing away trash in front of me.
-
+<img src = "https://image.flaticon.com/icons/svg/187/187614.svg" width=60 >
 
 ## **Features**
  - Usage through Messenger
