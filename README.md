@@ -130,6 +130,8 @@ This structure is main-server and pi-server(in RaspberryPi using flask framework
 Preparing
 
 ## **How to connect wires for sensor**
+![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/raspberry-pi-pinout.png?raw=true)
+
 Preparing
 
 
