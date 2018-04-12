@@ -63,7 +63,7 @@ Parents are always with their babies while raising their children. But they don'
  - PiServer is in RaspberryPi (This server manage RaspberryPi)
  - Using python 3.x version. Because Hangul generate error with uni-code/utf8.
  
-### " width=60 > https://image.flaticon.com/icons/svg/138/138601.svg" width=60 > **Installation** 
+### <img src= "https://image.flaticon.com/icons/svg/138/138601.svg" width=60 > **Installation** 
 
  **1) Server side**
   - Install MySQL.
