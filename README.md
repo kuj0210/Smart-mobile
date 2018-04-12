@@ -143,9 +143,6 @@ Preparing
 
  ## **Notes**
  
- - In issue#36 :: Reference PPT and video(참고용 PPT 및 동영상)<br>
-   https://github.com/kuj0210/IoT-Pet-Home-System/issues/36
-   
  - Installation method of Rasbian<br>
    https://www.raspberrypi.org/documentation/installation/installing-images/
 
