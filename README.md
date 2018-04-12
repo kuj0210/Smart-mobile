@@ -1,5 +1,5 @@
 
-# Smart--mobile <img src="https://image.flaticon.com/icons/svg/306/306905.svg?raw=true" width =60>
+# <img src="https://image.flaticon.com/icons/svg/306/306905.svg?raw=true" width =60> Smart-mobile 
 [![License: GPL v3](https://img.shields.io/badge/licence-GPL%20v3-yellow.svg)](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/LICENSE)
 <img src="https://img.shields.io/badge/python-%3E%3D3-brightgreen.svg">
 
