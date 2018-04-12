@@ -4,8 +4,7 @@
 <img src="https://img.shields.io/badge/python-%3E%3D3-brightgreen.svg">
 <br/>
 ### Smart mobile system for my baby with naver-talk-talk messenger
-<br/>
-2018 KIT Creative Design project<br/>   
+for 2018 KIT Creative Design project<br/>   
 <img src = "https://user-images.githubusercontent.com/33398268/38656619-37ddd6ea-3e0b-11e8-93a5-8402d948d6a6.png" width=256 >
 
 
