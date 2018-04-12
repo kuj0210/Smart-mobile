@@ -49,6 +49,7 @@ Parents are always with their babies while raising their children. But they don'
 
 
 ## **Requirement**
+<img src = "https://image.flaticon.com/icons/svg/715/715585.svg" width=60 >
 
  - Raspnerry Pi 3 module B (used in Pi Server)
  - 3 servo-motors(for meal,water,door) and PiCamera
@@ -65,7 +66,8 @@ Parents are always with their babies while raising their children. But they don'
  - Using python 3.x version. Because Hangul generate error with uni-code/utf8.
  
 ### **Installation**
- 
+<img src = "https://image.flaticon.com/icons/svg/189/189074.svg" width=60 >
+
  **1) Server side**
   - Install MySQL.
   ```
