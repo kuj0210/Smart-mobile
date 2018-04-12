@@ -1,5 +1,5 @@
 
-# Smart-mobile <img src="https://image.flaticon.com/icons/svg/306/306905.svg?raw=true" width =60> <img src = "https://user-images.githubusercontent.com/33398268/38657401-f795fc16-3e5a-11e8-9fb1-87eab8b4176e.png" width=65 >
+# Smart-mobile <img src="https://image.flaticon.com/icons/svg/306/306905.svg?raw=true" width =60> <img src = "https://user-images.githubusercontent.com/33398268/38657401-f795fc16-3e5a-11e8-9fb1-87eab8b4176e.png" width=63 >
 [![License: GPL v3](https://img.shields.io/badge/licence-GPL%20v3-yellow.svg)](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/LICENSE)
 <img src="https://img.shields.io/badge/python-%3E%3D3-brightgreen.svg">
 <br/>
