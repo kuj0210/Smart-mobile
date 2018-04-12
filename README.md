@@ -4,9 +4,8 @@
 <img src="https://img.shields.io/badge/python-%3E%3D3-brightgreen.svg">
 <br/>
 
-2018 KIT Creative Design project  
-<img src= "https://user-images.githubusercontent.com/33398268/38656619-37ddd6ea-3e0b-11e8-93a5-8402d948d6a6.png" width =256> 
-<img src = "https://user-images.githubusercontent.com/33398268/38656619-37ddd6ea-3e0b-11e8-93a5-8402d948d6a6.png" width=60 >
+2018 KIT Creative Design project   
+<img src = "https://user-images.githubusercontent.com/33398268/38656619-37ddd6ea-3e0b-11e8-93a5-8402d948d6a6.png" width=256 >
 
 
 
