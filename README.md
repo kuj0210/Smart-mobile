@@ -40,6 +40,7 @@ Parents are always with their babies while raising their children. But they don'
 
 ## **Features**
 <img src = "https://image.flaticon.com/icons/svg/321/321777.svg" width=60 >
+
  - Usage through Messenger
  - Raspberry Pi with chat-bot based System
  - Using communication with flask server
