@@ -6,7 +6,7 @@ for 2018 Creative Design
 [![License: GPL v3](https://img.shields.io/badge/licence-GPL%20v3-yellow.svg)](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/LICENSE)
 <img src="https://img.shields.io/badge/python-%3E%3D3-brightgreen.svg">
 [![Build Status](https://travis-ci.org/kuj0210/IoT-Pet-Home-System.svg?branch=master)](https://travis-ci.org/kuj0210/IoT-Pet-Home-System)
-### Smart mobile for my baby 
+### Smart mobile system for my baby with naver-talk-talk messenger
 
 
 
@@ -33,9 +33,7 @@ for 2018 Creative Design
 
 ## Introduction
 
-Pet House systems were built for people who would be absent from home and wouldn't be able to take care of their pets.
-so it can help reduce pet worries because it is easy to manage pets when you are away on long trips or on sudden appointments.
-It's very simple to use because it uses a messenger. If you are in an environment that has Internet access, you can use it anywhere.
+Parents are always with their babies while raising their children. But they don't always have to stick for 24 hours. our system will keep you company with your baby even if you stay away from me for a while, like going to the bathroom or throwing away trash in front of me.
 
 
 ## **Features**
