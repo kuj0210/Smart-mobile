@@ -159,8 +159,7 @@ Preparing
 Smart mobile is licensed under [the GNU GENERAL PUBLIC LICENSE v3](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/LICENSE).
  
  ```
- Copyright (C) 2017-present, kuj0210, KeonHeeLee, seok8418
-
+ Copyright (C) 2018-present, Team NAC(Need a Anti Cancer) - kuj0210, HaebinKim, ras120, Kownby         
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
