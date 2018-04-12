@@ -2,7 +2,6 @@
 # Smart--mobile <img src="https://image.flaticon.com/icons/svg/306/306905.svg?raw=true" width =60>
 [![License: GPL v3](https://img.shields.io/badge/licence-GPL%20v3-yellow.svg)](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/LICENSE)
 <img src="https://img.shields.io/badge/python-%3E%3D3-brightgreen.svg">
-[![Build Status](https://travis-ci.org/kuj0210/IoT-Pet-Home-System.svg?branch=master)](https://travis-ci.org/kuj0210/IoT-Pet-Home-System)
 
 for 2018 KIT Creative Design project
 
