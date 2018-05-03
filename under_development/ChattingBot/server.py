@@ -55,11 +55,7 @@ def naver_Servermain():
     Manager =NaverManager()
     # get data from naver  talk talk
     dataFromMessenger =request.get_json()# get json data from naver talk talk
-    infomationFromNaverTalk=Manager.getDataFromNaverTalk(dataFromMessenger) # it is process for data sorting
-    user =infomationFromNaverTalk["user"]
-
-    #
-    postBodyMessage = Manager.eventHandler(infomationFromNaverTalk) # process event
+    postBodyMessage = Manager.eventHandler(dataFromMessenger) # process event
     if postBodyMessage == "ECHO":
       return
     print("msg")
