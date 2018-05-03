@@ -36,10 +36,10 @@ class NaverManager:
 
 
 
-    def eventHandler(self,infomationFromNaverTalk):
+    def eventHandler(self,dataFromMessenger):
         sendMSG = "None"
         msgList =self.mMsgList
-
+        infomationFromNaverTalk=Manager.getDataFromNaverTalk(dataFromMessenger) # it is process for data sorting
         if infomationFromNaverTalk["event"] == "open":
             sendMSG = msgList.getOpenMsg()
     
