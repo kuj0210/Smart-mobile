@@ -68,7 +68,7 @@ while (1):
         mx = int(mmt['m10']/mmt['m00'])
         my = int(mmt['m01']/mmt['m00'])
 
-    #세이프티존 생성
+    #세이프티존 그리기
     if f == sf :
         for i in range(0,width):
             for j in range(0,height):
