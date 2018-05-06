@@ -1,0 +1,93 @@
+import os
+import wave
+from matplotlib import pyplot as plt
+
+wavfile1 = '1' + '.wav'
+wavfile2 = '2' + '.wav'
+wavfile3 = '3' + '.wav'
+wavfile4 = 'h1' + '.wav'
+wavfile5 = 'h2' + '.wav'
+wavfile6 = 'h3' + '.wav'
+wavfile7 = 's1' + '.wav'
+wavfile8 = 's2' + '.wav'
+wavfile9 = 's3' + '.wav'
+
+
+import pylab
+def graph_spectrogram(wav_file):
+    sound_info, frame_rate = get_wav_info(wav_file)
+    pylab.figure(num=None, figsize=(19, 12))
+    pylab.subplot(111)
+    #pylab.title('spectrogram of %r' % wav_file)
+    pylab.specgram(sound_info, Fs=frame_rate)
+    #pylab.savefig('spectrogram of %r.png' % wav_file)
+
+    ax1 = plt.subplot(211)
+    Pxx, freqs, bins, im = plt.specgram(sound_info, Fs=frame_rate)
+
+    #print(len(Pxx))
+    #print(len(freqs))
+    #print(len(bins))
+    #print(len(Pxx[0]))
+
+    #--------여기부터-------------
+
+    tmp = []                    #추출된 특징값들
+    for j in range(len(bins)):
+        k = 0
+        for i in range(0, 20):
+            if k < Pxx[i][j]:
+                k = Pxx[i][j]
+        tmp.append(k)
+
+    count = 0
+    len_count = 0
+    sum_a = 0
+    for i in range(len(tmp)):
+        if tmp[i] > 1000:       #아이 울음소리 got it
+            count += 1
+            sum_a += tmp[i]
+        if tmp[i] > 100:        #작은소리를 제외한 len을 구하기 위함
+            len_count += 1
+
+    bindo = count / len_count   #아이 울음소리의 빈도
+    aver = sum_a / count        #아이 울음소리의 평균 값
+    #print(bindo, aver)
+
+    print(wav_file)
+    if bindo > 0.6:             #울음소리의 빈도가 일정 이상일 경우
+        print("울어욧!")
+
+    if aver < 50000 and aver > 20000:  #추출된 값의 범위에 따라 울음의 타입별 동작(범위 수정필요)
+        print("졸려요")
+    elif aver > 50000:
+        print("배고파요")
+    elif aver < 20000:
+        print("아파요")
+    p3 = plt.plot(tmp, linewidth = 1, c = 'r')
+    #plt.show()
+
+
+
+def get_wav_info(wav_file):
+    wav = wave.open(wav_file, 'r')
+    frames = wav.readframes(-1)
+    sound_info = pylab.fromstring(frames, 'int16')
+    frame_rate = wav.getframerate()
+    wav.close()
+    return sound_info, frame_rate
+
+print("배고픈거\n")
+graph_spectrogram(wavfile1)
+graph_spectrogram(wavfile2)
+graph_spectrogram(wavfile3)
+
+print("아픈거\n")
+graph_spectrogram(wavfile4)
+graph_spectrogram(wavfile5)
+graph_spectrogram(wavfile6)
+
+print("졸린거\n")
+graph_spectrogram(wavfile7)
+graph_spectrogram(wavfile8)
+graph_spectrogram(wavfile9)
