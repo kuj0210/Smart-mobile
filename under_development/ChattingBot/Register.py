@@ -25,19 +25,6 @@ class Register:
 		##DB사용 쿼리문
 		self.US_DBQ =	"use %s;"%(self.DB_NAME)
 		
-		#전달문자관리
-		##성공
-		self.SUCESS_IST_USER="등록 완료"
-		self.SUCESS_DEL_NO_REGISTERD_USER ="미등록 유저입니다. 모든 정보들이 삭제되었습니다"
-		self.SUCESS_DEL_REGISTERD_USER="등록 시 넣은 정보들이 정상 삭제 되었습니다."
-
-		##에러
-		self.ERR_REGISTERD_USER="이미 등록된 유저입니다."
-		self.ERR_NO_REGISTERD_SERIAL="잘못된 시리얼번호입니다."
-		self.ERR_REGISTE_USER="유저등록에러"
-		self.ERR_DEL_REGISTERD_USER="등록정보 삭제 에러"
-
-		
 		##테이블 생성쿼리문
 		self.CT_DBQ =  '''
 				create database %s 
