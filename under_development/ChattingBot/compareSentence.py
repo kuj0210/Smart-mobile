@@ -136,13 +136,12 @@ class UsecaseFinder:
         self.parsingNVLIST=[]
         self.parsingLIST=[]
         data =self.kkma.pos(sentence)
-        print(data)
         #print(data)
         for list in data:
             if 'N' in list[1] or list[1].count('V')>1 or'C' in list[1]or'JKM' in list[1] :
                 self.parsingNVLIST.append(list[0])
                 self.parsingLIST.append(list)
-        print(self.parsingNVLIST)
+        print("\nkkma_LOG %s"%self.parsingNVLIST)
     ##don't Touch
     def setUserSetting(self):
         self.setUsecase("info", ["온도", "습도", "먼지","공기","방","상황"], ["주", '주고', "알려주"], GRAVITY_ALL)
