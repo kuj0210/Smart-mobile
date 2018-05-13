@@ -63,8 +63,6 @@ class Register:
 	def connectDB(self):
 		self.conn = pymysql.connect(host=self.host, user=self.user, password=self.pw, charset=self.charset)
 		self.curs = self.conn.cursor()
-
-	def checkUserTable(self):
 		try:
 		    with self.conn.cursor() as self.curs:        
 		    	self.curs.execute(self.US_DBQ)
@@ -74,16 +72,16 @@ class Register:
 		    self.conn.commit()
 
 		    with self.conn.cursor() as self.curs:
-		        self.curs.execute(self.US_DBQ)
+		        self.curs.execute(self.US_DBQ)		
 
-		   
-		    try:
-		        with self.conn.cursor() as self.curs:
-		            self.curs.execute(self.ST_UTQ)
-		    except:
-		        with self.conn.cursor() as self.curs:
-		            self.curs.execute(self.CT_UTQ)
-		    self.conn.commit()
+	def checkUserTable(self):
+		try:
+			with self.conn.cursor() as self.curs:
+				self.curs.execute(self.ST_UTQ)
+		except:
+			with self.conn.cursor() as self.curs:
+				self.curs.execute(self.CT_UTQ)
+		self.conn.commit()
 
 	def checkSystemTable(self):
 		try:
