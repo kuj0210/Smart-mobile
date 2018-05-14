@@ -44,13 +44,11 @@ class Register:
 		
 
 		self.CT_STQ = 	'''
-				create table mobileSystem(
+				create table %s(
 					serial varchar(50),
 					url varchar(50)
 					) ENGINE=InnoDB default character set utf8 collate utf8_general_ci;
-
-
-				'''
+				''''''%(self.ST_NAME)
 
 		##테이블 선택 쿼리문
 		self.ST_UTQ = "select * from naverUser;"
