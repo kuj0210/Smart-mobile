@@ -40,9 +40,7 @@ class Register:
 					serial varchar(50),
 					primary key (user_key,serial)
 					) ENGINE=InnoDB default character set utf8 collate utf8_general_ci;
-
-	
-			'''%(self.UT_NAME)
+				'''%(self.UT_NAME)
 		
 
 		self.CT_STQ = 	'''
