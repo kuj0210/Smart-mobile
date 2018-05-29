@@ -130,10 +130,17 @@ Preparing
 
 
 ### **sensor**
-
-- Orange wired: 
-- Red wired: 
-- Brown wired: 
+![image](https://user-images.githubusercontent.com/24354747/40634592-ca4e7350-6330-11e8-9494-97157efaea55.png)
+DHT22
+- Green wired:22(Data)
+- Red wired:1(3.3V)
+- Black wired:9(GND)
+PPD42NS
+- Orange wired:None
+- White wired:None
+- Yellow wired:23(Data)
+- Red wired:4(5V)
+- Black wired:6(GND)
 
 
  ## **Notes**
