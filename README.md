@@ -131,12 +131,12 @@ Preparing
 
 ### **sensor**
 ![image](https://user-images.githubusercontent.com/24354747/40634592-ca4e7350-6330-11e8-9494-97157efaea55.png)
-DHT22
+DHT22(Humidity and temperature sensor)
 - Green wired: (BCM:22)(GPIO.3)(Physical:15)(Data)
 - Red wired: (Physical:1)(3.3V)
 - Black wired: (Physical:9)(GND)
 
-PPD42NS
+PPD42NS(Dust sensor)
 - Orange wired: None
 - White wired: None
 - Yellow wired: (BCM:23)(GPIO.4)(Physical:16)(Data)
