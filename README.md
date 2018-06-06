@@ -105,7 +105,7 @@ Preparing
 
 ### **Client & Main server structure**
 
-![](https://github.com/kuj0210/IoT-Pet-Home-System/blob/master/.README/Structure_client&mainserver.png?raw=true)
+![](https://user-images.githubusercontent.com/33398268/41038128-3f27e2ba-69d0-11e8-88c3-03cf5e941de8.png)
 
 
  Client will order various commands. (regist user, control to pet-home etc) And the main-server get this commands. Before main-server get this commands, messages go to API server and API server give the data to main-server.(data:json type) After main-server get this type's data, it'll parse this data and make operation list for ordering to PiServer. The main-server send operation list to PiServer and make reply-message for sending to user.<br>
