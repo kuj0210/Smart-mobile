@@ -50,8 +50,8 @@ class Vo(Observer):
             try:
                 if (item != False):
                     print("request vo")
-                    file_path = item.msg + ".wav"
-                    self.wav_play(file_path)
+                    #file_path = item.msg + ".wav"
+                    self.wav_play(item.msg + ".wav")
                     print("play done")
                     tm.sleep(1)
                     self.mPush.insertMSG(item.user, item.msg + "재생이 종료되었어요.")
@@ -61,8 +61,8 @@ class Vo(Observer):
 
             try:
                 if (True):
-                    detection_flag = self.recode()
-                    if detection_flag:
+                    #detection_flag = self.recode()
+                    if self.recode():
                         self.detection2()
             except:
                 print("Vo - detection 에러")
