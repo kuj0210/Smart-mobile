@@ -38,7 +38,7 @@ class Info(Observer):
                 if Warning_flag:
                     print("Warning msg")
                     self.mPush.insertMSG('ALL', "Smart mobile에서 알려드립니다-%s\n" % DHT_msg)
-                    self.sleep_timer = 0 #이건 걍 두는게 나아보임
+                    self.sleep_timer = 0
                     time.sleep(10)
             except:
                 print("푸시 에러")
