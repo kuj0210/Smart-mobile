@@ -28,8 +28,6 @@ class Vi(Observer):
     babyCNT_ST = 0
     out_time = 0
 
-
-
     def __init__(self,Push):
         self.reSet(Push)
         self.BREAK_AWAY = "아이가 자리에서 벗어났어요!"
@@ -103,6 +101,13 @@ class Vi(Observer):
                 return 1
         return 0
 
+    def show(self):
+        cv2.imshow('fgmask', self.frame)
+        cv2.imshow('EDGES', self.edges)
+
+    def copyFrame(self):
+        self.old_gray = self.frame_gray.copy()
+
     def run(self):
         print("Running Vi")
         while(True):
@@ -141,16 +146,13 @@ class Vi(Observer):
                         self.mPush.insertMSG('ALL', MSG)
                         #time.sleep(10)
                 except :
-                    print("MSG error")                    
-                cv2.imshow('fgmask', self.frame)
-                cv2.imshow('EDGES', self.edges)
+                    print("MSG error")
+                self.show()
                 k = cv2.waitKey(1) & 0xff
                 if k == 27:
                     break
-                self.old_gray = self.frame_gray.copy()
+                self.copyFrame()
         self.cap.release()
         cv2.destroyAllWindows()
 
         time.sleep(15)
-
-
