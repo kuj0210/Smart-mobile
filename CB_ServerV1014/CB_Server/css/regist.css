@@ -1,0 +1,119 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body, form, button, label, input, button{
+	margin: 0 auto;
+	padding: 0;
+	}
+
+body, input, textarea, select {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #4c4c4c;
+}
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+	
+body {
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #e0f2f1 !important;
+}
+
+hr{
+  color: #a9a9a9;
+  opacity: 0.3;
+}
+
+form {	
+  margin: 0 auto;
+  width: 280px;
+  height: 280px;
+  padding: 20px;
+  -webkit-border-radius: 8px/7px; 
+  -moz-border-radius: 8px/7px; 
+  border-radius: 8px/7px; 
+  background-color: #ebebeb; 
+  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+  -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+  box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+  border: solid 1px #cbc9c9;
+}
+
+form h1 {
+  font-size: 32px;
+  font-weight: 300;
+  color: #4c4c4c;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+form label {
+	float: left;
+	font-weight: bold;
+	font-size: 13px;
+	width: 110px;
+}
+				
+form select, form input[type=text] {
+    width: 200px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 15px;
+    color: #848484;
+    border: 1px solid #848484;
+    border-radius: 3px;
+}	
+	
+#icon {
+  display: inline-block;
+  width: 20px;
+  background-color: #3a57af;
+  padding: 8px 8px 8px 15px;
+  margin-left: 15px;
+  -webkit-border-radius: 4px 0px 0px 4px; 
+  -moz-border-radius: 4px 0px 0px 4px; 
+  border-radius: 4px 0px 0px 4px;
+  color: white;
+  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+  -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+  box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+  border: solid 0px #cbc9c9;
+}
+	
+form button {
+  font-size: 14px;
+  font-weight: 600;
+  color: white; 
+  left: 38%;
+  display: inline-block;
+  text-decoration: none;
+  width: 70px; height: 27px; 
+  -webkit-border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  border-radius: 5px; 
+  background-color: #3a57af; 
+  -webkit-box-shadow: 0 3px rgba(58,87,175,.75); 
+  -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
+  box-shadow: 0 3px rgba(58,87,175,.75);
+  transition: all 0.1s linear 0s; 
+  top: 0px;
+  position: relative;
+}
+					
+form button:hover {
+  top: 3px;
+  background-color:#2e458b;
+  -webkit-box-shadow: none; 
+  -moz-box-shadow: none; 
+  box-shadow: none;
+}
+
+footer {
+}

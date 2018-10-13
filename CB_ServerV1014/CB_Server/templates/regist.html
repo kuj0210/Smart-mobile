@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IoT-Mobile-System 사용자등록</title>
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="js/regist.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    function get_url(){
+        var cur_url = window.location;
+        document.getElementById("regist_user").action = cur_url;
+    }
+    </script>
+</head>
+<body onload="get_url();">
+    <form id="regist_user" method="POST" onsubmit="return checkRegist()" action="/signup">
+		<h1>Sign Up</h1>
+		</p><hr></p>
+		<label id="icon" for="name"><i class="fa fa-user-circle" aria-hidden="true"></i></label>
+        <input id="serial" name="serial" type="text" placeholder="Serial Number" equired autofocus required>
+		</p>
+		<label id="icon" for="name"><i class="fa fa-envelope-o" aria-hidden="true"></i></label>
+        <input id="email" name="email" type="text"  placeholder="Email Address" required>
+        </p>
+		<label id="icon" for="name"><i class="fa fa-map-marker" aria-hidden="true"></i></label>
+		<select name="location" required>
+			<option value="">Location</option>
+			<option value="서울">서울</option>
+			<option value="경기">경기</option>
+			<option value="인천">인천</option>
+			<option value="강원">강원</option>
+			<option value="충북">충북</option>
+			<option value="대전">대전</option>
+			<option value="충남">충남</option>
+			<option value="경북">경북</option>		
+			<option value="대구">대구</option>
+			<option value="경남">경남</option>
+			<option value="부산">부산</option>
+			<option value="울산">울산</option>
+			<option value="전북">전북</option>
+			<option value="광주">광주</option>
+			<option value="전남">전남</option>
+			<option value="제주">제주</option>
+		</select>
+		</p><hr></p>
+        <button onClick="submit"> Submit </button>
+    </form>
+</body>
+</html>
