@@ -143,7 +143,7 @@ class Vi(Observer):
                     MSG = self.checkBabyCNT()
                     if MSG != 0:
                         self.mPush.insertMSG('ALL', MSG)
-                        time.sleep(10)
+                        #time.sleep(10)
                 except :
                     print("MSG error")
                 self.show()
