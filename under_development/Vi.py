@@ -43,8 +43,7 @@ class Vi(Observer):
         os.system('sudo modprobe bcm2835-v4l2')
         self.cap = cv2.VideoCapture(0)
         self.vi_width = int(self.cap.get(3))
-        self.vi_height = int(self.cap.get(4))     
-        self.getSaftyZone()
+        self.vi_height = int(self.cap.get(4))   
         ret, self.old_frame = self.cap.read()
         if self.old_frame is None:
             print("camera error1")
