@@ -77,8 +77,7 @@ class Vi(Observer):
         try:
             if (PUSHCODE == self.PUSHCODE_P1):  # 넘어오는 코드별로 분류하여 행동처리 PUSHCODE == PUSHCODE_P1 이런식으로
                 print("Vi - picture request")
-                cv2.imwrite(self.mPush.T.SERIAL + ".png", self.origin_frame)
-                self.mPush.T.pushImage(item.user, self.mPush.T.SERIAL + ".png")
+                self.picturePush()
                 return self.RQ_PUSH + "  " + PUSHCODE
             else:
                 return False
@@ -194,6 +193,9 @@ class Vi(Observer):
                 self.untill_time = time.time()
                 return (self.UNTILL_BREAK)
             return 0
+    def picturePush(self):
+        cv2.imwrite(self.mPush.T.SERIAL + ".png", self.origin_frame)
+        self.mPush.T.pushImage(item.user, self.mPush.T.SERIAL + ".png")
 
     def copyFrame(self):
         self.old_gray = self.frame_gray.copy()
