@@ -193,6 +193,7 @@ class Vi(Observer):
                 self.untill_time = time.time()
                 return (self.UNTILL_BREAK)
             return 0
+        
     def picturePush(self):
         cv2.imwrite(self.mPush.T.SERIAL + ".png", self.origin_frame)
         self.mPush.T.pushImage(item.user, self.mPush.T.SERIAL + ".png")
