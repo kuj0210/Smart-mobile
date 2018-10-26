@@ -1,0 +1,24 @@
+    def msgDelay(self, res):
+        if(res == self.BREAK_AWAY):
+            pre_out_time = self.out_time
+            self.out_time = int(time.time())
+            if self.out_time - pre_out_time > 300:
+                return res
+            else :
+                return False
+            
+        if(res == self.UNTILL_BREAK):
+            pre_untill_time = self.untill_time
+            self.untill_time = int(time.time())
+            if self.untill_time - pre_untill_time > 600:
+                return res
+            else :
+                return False
+            
+        if(res == self.RETURN_BACK):
+            pre_return_time = self.return_time
+            self.return_time = int(time.time())
+            if self.return_time - pre_return_time > 300:
+                return res
+            else :
+                return False
