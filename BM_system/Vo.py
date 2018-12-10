@@ -6,9 +6,16 @@ import scipy.io.wavfile as wav
 from numpy.lib import stride_tricks
 import pylab
 import pyaudio
-
+import prediction_simulation
 
 class Vo(Observer):
+    # 사용자의 요청 구분 예)목소리들려줘 노래들려줘 구분, 외부 참조내용 내부에서 구분할때도 사용할것
+    NAME = 'VO'
+    PUSHCODE_P1 = NAME+"노래"
+    PUSHCODE_P2 = NAME+"목소리"
+    #PUSHCODE_P3 = NAME+"-ob3"
+
+    # 녹음시(주변 소리 크기가 울음인지 소음인지 구분없이 클때) 정보.
     FORMAT = pyaudio.paInt16
     CHANNELS = 1
     RATE = 44100
@@ -17,59 +24,99 @@ class Vo(Observer):
     DEVICE_INDEX = -1
     WAVE_OUTPUT_FILENAME = "file.wav"
     Recode_Value = 1000
+
+    # 시간체크용 변수
+    Cry_Time_Strat = 0
+    Cry_Time_End = 0
+    Noise_Time_Start = 0
+    Noise_Time_End = 0
+    Cry_Check = False
+    Noise_Check = False
+    Msg_Check = False
     
     Cry_Value_V = 50
     Cry_Value_B = 35
+    Sound_Value = 45
     Sick_Value = 80
     Hungry_Value = 65
     Sleepy_Value = 50
-
+    Vo_Noise_Start = 0
+    Vo_Noise_End = 0
+    Vo_Cry_Start = 0
+    Vo_Cry_End = 0
+    
     def __init__(self,Push):
+        self.EV_PUSH = Vo.NAME+" 관측 푸쉬"
+        self.RQ_PUSH = Vo.NAME+" 요청처리 메세지"
         self.reSet(Push)
-        po = pyaudio.PyAudio()
-        for index in range(po.get_device_count()):
-            desc = po.get_device_info_by_index(index)
-            if desc["name"] == "USB Audio Device":
-                self.DEVICE_INDEX = index
-                break
-            
+        self.mPush = Push
+        self.setStatToAnotherForImage()
+        
 
+    #오버라이딩, 요청처리기능 만약 하위 클래스가 처리하는게 없다면 False 반환
+    def processRequest(self, PUSHCODE):
+        # 넘어오는 코드별로 분류하여 행동처리 PUSHCODE == PUSHCODE_P1 이런식으로
+        try:
+            if (PUSHCODE == self.PUSHCODE_P1): # 노래 재생
+                print("request vo")
+                file_path = "music.wav"
+                self.wav_play(file_path)
+                print("play done")
+                tm.sleep(1)
+                #here
+                # return self.RQ_PUSH + PUSHCODE +" 요청 종료."
+                return "노래 재생이 종료됬어요"
+            elif (PUSHCODE == self.PUSHCODE_P2): #목소리 재생
+                print("request vo")
+                file_path = "voice.wav"
+                self.wav_play(file_path)
+                print("play done")
+                tm.sleep(1)
+                #here
+                # return self.RQ_PUSH + PUSHCODE + " 요청 종료."
+                return "목소리 재생이 종료됬어요"
+            else:
+                return False
+        except:
+            print("Vo - request 에러")
+            print("Vo - porcessRequest 에러")
+            return False
 
-    def run(self):
-        print("running vo")
+    # 오버라이딩, 관측 중 푸쉬해야하는 상황이 발생하면 정의해둔 메세지 리턴
+    def detectEnvironment(self):
+        res = False
 
-        while (True):
-            try:
-                item = self.popRQ()
-            except:
-                print("Vo에서 popRQ 리퀘스트 받기 에러")
-                continue
+        # 록 부분. 각각 5분.
+        if self.Noise_Check == True:
+            self.Vo_Noise_End = tm.time()
+        if self.Vo_Noise_End - self.Vo_Noise_Start > 300:
+            self.Noise_Check = False
 
-            try:
-                if (item != False):
-                    print("request vo")
-                    file_path = item.msg + ".wav"
-                    self.wav_play(file_path)
-                    print("play done")
-                    tm.sleep(1)
-                    self.mPush.insertMSG(item.user, item.msg + "재생이 종료되었어요.")
-            except:
-                print("Vo - request 에러")
-                continue
+        if self.Cry_Check == True:
+            self.Vo_Cry_End = tm.time()
+        if self.Vo_Noise_End - self.Vo_Noise_Start > 300:
+            self.Cry_Check = False
+        
+        # 녹화 및 분석.
+        try:
+            if (True):
+                # detection_flag = self.recode()
+                if self.recode():
+                    res = self.detection2()
+            if (res == False):
+                return False
+            else:  # 필요시 elif등 사용할것
+                return res
+        #예외처리
+        except:
+            print("Vo - detection 에러")
+            print("Vo - detectEnvironment 에러")
+            return False
+        # 적당한 메서드를 호출해서 알람발생을 해야한다면 알람에 들어갈 메세지 리턴하게할것
+        # 반드시 위에 상수를 참조하여 쓸 걸
 
-            try:
-                if (True):
-                    detection_flag = self.recode()
-                    if detection_flag:
-                        self.detection2()
-            except:
-                print("Vo - detection 에러")
-                continue
-
-
-
-                    
-    def wav_play(self,path):
+    #음성, 노래 파일 실행 메소드.
+    def wav_play(self, path):
         CHUNK = 1024
         wf = wave.open(path, 'rb')
         p = pyaudio.PyAudio()
@@ -81,12 +128,12 @@ class Vo(Observer):
         while data:
             stream.write(data)
             data = wf.readframes(CHUNK)
-            
+
         stream.stop_stream()
         stream.close()
         p.terminate()
 
-
+    #녹음 메소드
     def recode(self):
         audio = pyaudio.PyAudio()
         stream = audio.open(
@@ -121,6 +168,7 @@ class Vo(Observer):
         waveFile.close()
         return True
 
+    #현 녹음 파일을 단시간 푸리에 변환(STFT) 하기 위한 메소드
     def stft(self, sig, frameSize, overlapFac=0.5, window=np.hanning):
         win = window(frameSize)
         hopSize = int(frameSize - np.floor(overlapFac * frameSize))
@@ -134,6 +182,7 @@ class Vo(Observer):
 
         return np.fft.rfft(frames)
 
+    #주파수, 음향을 얻기 위한 메소드
     def logscale_spec(self, spec, sr=44100, factor=20.):
         timebins, freqbins = np.shape(spec)
 
@@ -158,6 +207,7 @@ class Vo(Observer):
 
         return newspec, freqs
 
+    #울음 분석 및 분류. 울음이 발견되면 15초 동안 정지.
     def detection2(self):
         samplerate, samples = wav.read(self.WAVE_OUTPUT_FILENAME)
         binsize = 2 ** 10
@@ -208,13 +258,21 @@ class Vo(Observer):
 
         cry_bindo = tcheck / timebins * 100
         cry_volum = maxnum2500 / timebins * 100
-        
+
         result = 0
         if cry_volum > self.Cry_Value_V and cry_bindo > self.Cry_Value_B:
             result = "울고 있어요."
+            if self.Cry_Check == True:
+                return False
+            self.Cry_Check = True
+            self.Vo_Cry_Start = tm.time()
         else:
-            return "don't cry"
-        
+            if self.Noise_Check == True:
+                return False
+            self.Noise_Check = True
+            self.Vo_Noise_Start = tm.time()
+            return "주변 소음이 나네요."
+
         if cry_volum > self.Sick_Value:
             result = "아파서 " + result
         elif cry_volum > self.Hungry_Value:
@@ -224,9 +282,14 @@ class Vo(Observer):
         else:
             result = "왜 우는지 모르겠어요 "
 
-       
-        self.mPush.insertMSG('ALL', "아이가 %s" % result)
+        print(result)
+        #self.mPush.insertMSG('ALL', "아이가 %s" % result)
         print("Vo sleep")
-        tm.sleep(15)
+        tm.sleep(3)
 
         return result
+
+if __name__ == "__main__":
+    vi=Vo(Observer)
+    print("Running Vo")
+    vi.run()

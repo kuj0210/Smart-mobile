@@ -7,7 +7,7 @@ class Translator():
     SERIAL=""
     def __init__(self):
         # URL 관리
-        self.SERVER_URL = "https://kit-iot-system.tk:443/"
+        self.SERVER_URL = "https://kitiot.tk:443/"
         self.PUSH_URL = self.SERVER_URL+"push"
         self.BOOT_URL = self.SERVER_URL + "bootUp"
         self.RQST_URL = self.SERVER_URL + "RQST"
@@ -45,12 +45,20 @@ class Translator():
         #files = open(path, 'rb')
         files = open(path, 'rb')
         print("오픈")
-        upload = {'file': files}
-        obj={"user":user, "fname":path}
-        # request.post방식으로 파일전송.
-        print("생성")
-        res = requests.post(self.getIMAG_URL(user), files=upload,data = obj)
+        if user =='ALL':
+            for user in self.userList:
+                upload = {'file': files}
+                obj = {"user": user, "fname": path}
+                res = requests.post(self.getIMAG_URL(user), files=upload, data=obj)
+        else:
+            upload = {'file': files}
+            obj={"user":user, "fname":path}
+            # request.post방식으로 파일전송.
+            print("생성")
+            res = requests.post(self.getIMAG_URL(user), files=upload,data = obj)
         print(res)
+
+
 
 
 if __name__ =="__main__":

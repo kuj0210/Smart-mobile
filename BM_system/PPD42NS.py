@@ -61,7 +61,8 @@ if __name__ == "__main__":
    import PPD42NS
 
    pi = pigpio.pi() # Connect to Pi.
-   s = PPD42NS.sensor(pi, 24)
+   s = PPD42NS.sensor(pi, 24)#
+   
 
    while True:
       time.sleep(1)

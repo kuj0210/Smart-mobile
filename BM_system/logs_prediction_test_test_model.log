@@ -1,0 +1,7 @@
+2018-10-14 05:39:38 PM - INFO - Reading file.wav
+2018-10-14 05:39:38 PM - INFO - Time taken for reading file: 0.02987631228332463
+2018-10-14 05:39:38 PM - INFO - Starting feature engineering
+2018-10-14 05:39:38 PM - INFO - Time taken for feature engineering: 0.3292214079532874
+2018-10-14 05:39:38 PM - INFO - Predicting...
+2018-10-14 05:39:38 PM - INFO - Time taken for prediction: 0.002971304131153818. Is it a baby cry?? 1
+2018-10-14 05:39:40 PM - INFO - Saving prediction...

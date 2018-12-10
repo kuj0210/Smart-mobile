@@ -3,16 +3,21 @@ from push import *
 
 class MobileSystem:
     def __init__(self):
+        # 시스템 정보
+        self.CONFIG = "configPI.txt"
+
+        # 필요변수 생성
         self.T = Translator()
         self.Push = Push()
-        self.CONFIG = "configPI.txt"
-        #시스템 정보
+        self.USECASEDIC = {}
 
         #값 초기화
+        self.setUsecase()
         if self.loadSerail() ==False:
             exit()
         self.bootUp()
-        print("프로그램 안전부팅 완료")
+
+    # parshing for data from server
     def parshResponseByNL(self,res):
         res =res.split("\n")
         res.pop()
@@ -23,7 +28,7 @@ class MobileSystem:
         res =res.split(" ")
         return res
 
-
+    # for data load
     def loadSerail(self):
         try:
             with open(self.CONFIG, "r") as f:
@@ -33,11 +38,24 @@ class MobileSystem:
             print("파일 입출력 에러")
             return False
         return False
+    def setUsecase(self):
+        #유스케이스 = [푸쉬클래스내의 구분코드, 전달할 메세지코드]
+        self.USECASEDIC["info"] = [self.Push.IF, Info.PUSHCODE_P1]
+        self.USECASEDIC["camera"] =[self.Push.VI,Vi.PUSHCODE_P1]
+        self.USECASEDIC["music"] = [self.Push.VO,Vo.PUSHCODE_P1]
+        self.USECASEDIC["voice"] = [self.Push.VO,Vo.PUSHCODE_P2]
     def bootUp(self):
-        res=self.T.sendMsg(self.T.BOOT_URL,"NO_USER",Translator.SERIAL)
-        Translator.userList= self.parshResponseByNL(res)
-        print(Translator.userList)
+        res = -1
+        while res==-1:
+            try:
+                res=self.T.sendMsg(self.T.BOOT_URL,"NO_USER",Translator.SERIAL)
+                Translator.userList= self.parshResponseByNL(res)
+                print(Translator.userList)
+            except:
+                print("유저로딩 실패, 재시도")
+                res = -1
 
+    # for get data from server
     def getRequest(self,wating):
         time.sleep(wating)
         res = self.T.sendMsg(self.T.RQST_URL,"NO_USER",Translator.SERIAL)
@@ -50,39 +68,44 @@ class MobileSystem:
             atom.pop(0)
             list.append(atom)
         return list
+    def classfyList(self,toDoList):
+        user_data = toDoList.pop(0)
+        user = user_data.pop(0)
+        return user,user_data
 
-    while (True):
+    # for push
+    def getOB_CODE(self,UC_CODE):
+        return self.USECASEDIC[UC_CODE][0]
+    def getPUSHCODE(self,UC_CODE):
+        return self.USECASEDIC[UC_CODE][1]
+
+    # system run
+    def runMobile(self):
         try:
-            list = self.getRequest(self.waiting)
-            self.sendOperationPush()
-
-            if list == False:
-                continue
-
-            else:
-                print(list)
-                str = ""
-                while (len(list) > 0):
-                    item = list.pop(0)
-                    user = item.pop(0)
-
-                    if 'UPDATE' in list:
-                        print("유저변동발생!")
-                        self.bootUp()
-
-                    if 'info' in list:
-                        self.Push.observerList[Push.IF].insertRQ(user, "인포메이션 스레드::정보기능완료")  # 온습도기능 요청
-                    if 'camera' in list:
-                        self.Push.observerList[Push.VI].insertRQ(user, "비디오스레드::사진기능완료")  # 사진기능 요청
-                    if 'voice' in list:
-                        self.Push.observerList[Push.VO].insertRQ(user, "voice")
-                    if 'music' in list:
-                            self.Push.observerList[Push.VO].insertRQ(user, "music")
-
+            self.Push.PushTh.start()
+            print("하위시스템 on")
         except:
-            print("\"Send Request\" error.")
+            print("하위시스템 ERR")
+            return
 
+        while True:
+            try:
+                toDoList = self.getRequest(6)
+                if toDoList == False:
+                    print("No toDoList")
+                    continue
+                else:
+                    print(toDoList)
+                    while (len(toDoList) > 0):
+                        user,user_data = self.classfyList(toDoList)
+                        if 'UPDATE' in user_data:
+                            self.bootUp()
+                        for UC_CODE in self.USECASEDIC:
+                            if UC_CODE in user_data:
+                                self.Push.pushToObjerver(self.getOB_CODE(UC_CODE),user,self.getPUSHCODE(UC_CODE))
 
+            except:
+                print("runMobile 리퀘스트 에러")
 
 if __name__ =="__main__":
     MS=MobileSystem()
