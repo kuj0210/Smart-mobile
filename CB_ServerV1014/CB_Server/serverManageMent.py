@@ -16,7 +16,18 @@ class NaverManager:
         self.SERVER_URL = 'https://kitiot.tk:443/'
         self.IMAGE_URL = self.SERVER_URL+'download/'
         self.SIGN_UP_URL =  self.SERVER_URL+'sign_up/'
-        
+    
+    def getOnlyImageBox(self,user,url):
+        imag ={
+            "event": "send",
+            "user": user,   
+            "imageContent":
+            {
+                "imageUrl": url
+            }
+        }
+        return imag
+
     def getImageBox(self,user,url):
         imag={
             "event": "send",
@@ -75,9 +86,9 @@ class NaverManager:
         header = {"Content-Type": "application/json;charset=UTF-8","Authorization": "kaQdS4oaQjKux6wN7QJJ" }
         res = requests.post(url=self.UPDATE_URL, headers=header, data=json.dumps(self.getUpdateBox(url)))
     def sendIMAG(self,user,URL):
-        print(self.getImageBox(user,URL))
+        print(self.getOnlyImageBox(user,URL))
         header = {"Content-Type": "application/json;charset=UTF-8","Authorization": "kaQdS4oaQjKux6wN7QJJ" }
-        res = requests.post(url= self.PUSH_URL, headers=header, data=json.dumps(self.getImageBox(user,URL)))
+        res = requests.post(url= self.PUSH_URL, headers=header, data=json.dumps(self.getOnlyImageBox(user,URL)))
     # 2차원 데이터를 1차원으로 변경
     def getDataFromNaverTalk(self,dataFromMessenger):
         dicForSaveUserData ={}
@@ -86,7 +97,11 @@ class NaverManager:
         dicForSaveUserData ={"user":user,"event":event}
 
         if event !="friend":
-            dicForSaveUserData["typing"] = dataFromMessenger["textContent"]["inputType"]
+            if "textContent" in dataFromMessenger:
+                dicForSaveUserData["typing"] = dataFromMessenger["textContent"]["inputType"]
+            else:
+                dicForSaveUserData["typing"] ="None"
+                
             if  dicForSaveUserData["typing"]=="typing":
                  dicForSaveUserData["message"] = dataFromMessenger["textContent"]["text"]   
 
@@ -144,8 +159,10 @@ class NaverManager:
 
         elif "regist" in requestlist:
             id = IDI.getTempID(user)
+            print("ID:: "+id)
             if self.mRegister.insertTempID(user, id) == False:
-                return self.mMsgList.ERR_REGISTERD_USER
+                print(self.mMsgList.ERR_REGISTERD_USER)
+                return 
            
             return "아래의 사용자 등록 폼에 따라 등록을 해주세요.\n"+self.SIGN_UP_URL+id
         else :

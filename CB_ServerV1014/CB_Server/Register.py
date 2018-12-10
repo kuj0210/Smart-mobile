@@ -1,4 +1,6 @@
 import pymysql
+import time
+import random
 from DBString import *
 from defaultMessage import*
 class Register:
@@ -9,8 +11,8 @@ class Register:
 		self.curs = None
 		self.serial = None
 		self.host = "localhost"
-		self.user = "d134"
-		self.pw = "asdf1234"   		#ss1234
+		self.user = "testor"
+		self.pw = "asdf1234"   			
 		self.charset = "utf8"
 
 		#로그 정보
@@ -51,6 +53,15 @@ class Register:
 		except:
 			with self.conn.cursor() as self.curs:
 				self.curs.execute(self.SQL.CT_STQ)
+		self.conn.commit()
+
+	def checkMessageTable(self):
+		try:
+			with self.conn.cursor() as self.curs:
+				self.curs.execute(self.SQL.ST_MTQ)
+		except:
+			with self.conn.cursor() as self.curs:
+				self.curs.execute(self.SQL.CT_MTQ)
 		self.conn.commit()
 
 	def checkRequestTable(self):
@@ -103,6 +114,19 @@ class Register:
 		try:
 			with self.conn.cursor() as self.curs:
 				query = self.SQL.getQ_ST_U_FromUserKey(user_key)
+				self.curs.execute(query)
+				rows = self.curs.fetchall()
+				if len(rows) > 0:
+					return True
+				else:
+					return False
+		except:
+				return False
+
+	def checkMSGfromIDX(self, idx):
+		try:
+			with self.conn.cursor() as self.curs:
+				query = self.SQL.getQ_ST_M_From_IDX(idx)
 				self.curs.execute(query)
 				rows = self.curs.fetchall()
 				if len(rows) > 0:
@@ -261,9 +285,11 @@ class Register:
 				return  self.mMsgList.ERR_SCH_UK
 
 	def insertTempID(self, user_key, id):
+		print("user: "+user_key+"   id: "+id)
 		self.openDB()
 		if self.checkRegistedUser(user_key) == True:
-			return False
+			print(self.mMsgList.ERR_REGISTERD_USER)
+			return 
 
 		with self.conn.cursor() as self.curs:
 			try:
@@ -271,10 +297,12 @@ class Register:
 					self.curs.execute(self.SQL.getQ_IT_T(user_key, id))
 					self.conn.commit()
 				self.closeDB()
+				print(self.mMsgList.SUCESS_IST_TEMPID)
 				return self.mMsgList.SUCESS_IST_TEMPID
 			except:
 				self.closeDB()
-				return self.mMsgList.ERR_IST_TEMPID
+				print(self.mMsgList.ERR_IST_TEMPID)
+				return 
 		self.closeDB()
 
 	def getUserKeyByTempID(self, tempID):
@@ -291,9 +319,103 @@ class Register:
 				return user_key
 			except:
 				self.closeDB()
-				return self.mMsgList.ERR_SCH_UK_FROM_TEMPID
+				print(self.mMsgList.ERR_SCH_UK_FROM_TEMPID)
+				return
 		self.closeDB()
 
+	def getALL_UserKey(self):
+		self.openDB()
+		with self.conn.cursor() as self.curs:
+			if self.checkUserTable() == False:
+				return self.mMsgList.ERR_NO_USER_TABLE
+			try:
+				with self.conn.cursor() as self.curs:
+					
+					print(self.SQL.getQ_ST_ALL_U())
+					self.curs.execute(self.SQL.getQ_ST_ALL_U())
+					
+					user_key = self.curs.fetchall()
+					
+				
+					user_keys = []
+					for i in range(0, len(user_key)):
+						user_keys.append(user_key[i][0])
+						print(user_keys)
+				self.closeDB()
+				return user_keys
+			except:
+				self.closeDB()
+				return self.mMsgList.ERR_SCH_ALL_UK
+		self.closeDB()
+
+	def getMSGfromIDX(self, IDX):
+		self.openDB()
+		with self.conn.cursor() as self.curs:
+			if self.checkMessageTable()==False:
+				return self.mMsgList.ERR_SCH_MSG_TABLE
+			if self.checkMSGfromIDX(IDX)==False:
+				return self.mMsgList.ERR_SCH_MSG_FROM_IDX
+			try:
+				with self.conn.cursor() as self.curs:
+					self.curs.execute(self.SQL.getQ_ST_M_From_IDX(IDX))
+					msg = self.curs.fetchall()[0][0]
+				self.closeDB()
+				return msg
+			except:
+				self.closeDB()
+				return self.mMsgList.ERR_GET_MSG
+		self.closeDB()
+
+	def insertMSG(self, msg):
+		self.openDB()
+		with self.conn.cursor() as self.curs:
+			if self.checkMessageTable()==False:
+				return self.mMsgList.ERR_SCH_MSG_TABLE
+
+			try:
+				with self.conn.cursor() as self.curs:
+					self.curs.execute(self.SQL.getQ_IT_M(msg))
+					self.conn.commit()
+				self.closeDB()
+				return self.mMsgList.SUCESS_IST_MSG
+			except:
+				self.closeDB()
+				return self.mMsgList.ERR_IST_MSG
+		self.closeDB()
+
+	def deleteMSGfromIDX(self, idx):
+		self.openDB()
+		with self.conn.cursor() as self.curs:
+			if self.checkMessageTable()==False:
+				return self.mMsgList.ERR_SCH_MSG_TABLE
+			if self.checkMSGfromIDX(idx)==False:
+				return self.mMsgList.ERR_SCH_MSG_FROM_IDX
+			try:
+				with self.conn.cursor() as self.curs:
+					self.curs.execute(self.SQL.getQ_DT_M_From_IDX(idx))
+					self.conn.commit()
+				self.closeDB()
+				return self.mMsgList.SUCESS_DEL_MSG
+			except:
+				self.closeDB()
+				return self.mMsgList.ERR_DEL_MSG
+		self.closeDB()
+
+	def getMsgTableLen(self):
+		self.openDB()
+		with self.conn.cursor() as self.curs:
+			if self.checkMessageTable()==False:
+				return self.mMsgList.ERR_SCH_MSG_TABLE
+			try:
+				with self.conn.cursor() as self.curs:
+					self.curs.execute(self.SQL.getQ_MSG_Table_Len())
+					msg = self.curs.fetchall()[0][0]
+				self.closeDB()
+				return msg
+			except:
+				self.closeDB()
+				return self.mMsgList.ERR_GET_MSG_TABLE_LENGTH
+		self.closeDB()
 
 	def listToString(self,list):
 		print(list)
@@ -304,15 +426,35 @@ class Register:
 			str+="\n"
 		return str
 
+
+
+
+# 사용 예
 if __name__=="__main__":
 	user ="u9-NF6yuZ8H8TAgj1uzqnQ"
 	Reg =Register()
 
-	print(Reg.insertUserData("testkey", "SR0003", "test@email.com", "Location"))
-	print(Reg.insertTempID("testkey", "ID"))
-	print(Reg.getUserKeyByTempID("ID"))
+	#tableLen = Reg.getMsgTableLen()
+	#print(Reg.insertMSG("newmessage" + tableLen))
+
+	tableLen = Reg.getMsgTableLen()
+	i = random.randrange(0, tableLen)
+	while 1:
+		now = time.localtime()
+		#if now.tm_hour == 10 and now.tm_min == 0 and now.tm_sec == 0:  #  10:00:00 에 동작하는 if 문
+		if (now.tm_sec % 5) == 0:   #확인용 if문 매분 0, 5 ,10 ,15 ...... 초 마다 동작
+			print(Reg.getMSGfromIDX((i % tableLen) + 1))
+			print(Reg.getALL_UserKey())
+			i += 1
+
+
+
+
+	#print(Reg.insertUserData("testkey", "SR0003", "test@email.com", "Location"))
+	#print(Reg.insertTempID("testkey", "ID"))
+	#print(Reg.getUserKeyByTempID("ID"))
 	#Reg.deleteUserData("testkey")
 	#Reg.deleteTempID("ID")
-	print(Reg.insertUserData(user, "SR0003", "test2@email.com", "location2"))
-	print(Reg.insertUserRequest(user,"TEST1 TEST2 TEST3"))
+	#print(Reg.insertUserData(user, "SR0003", "test2@email.com", "location2"))
+	#print(Reg.insertUserRequest(user,"TEST1 TEST2 TEST3"))
 	#print(Reg.insertUserRequest("testor","TEST4"))

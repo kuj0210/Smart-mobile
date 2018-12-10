@@ -7,9 +7,11 @@ from konlpy.corpus import kolaw
 import jpype
 from Register import *
 import os
-from datetime import datetime
+from datetime import datetime 
 import time
 from memo import Memory
+from Alam import Scheduler
+
 THusecaseFinder =compareSentence.UsecaseFinder()
 UPLOAD_FOLDER = 'uploaded'
 
@@ -60,7 +62,6 @@ def pushResult():
     msg=dataFromMessenger['textContent']['text']
     nM.sendPush(nM.PUSH_URL,user,msg)
     
-    
     return "True"
 
 
@@ -69,22 +70,21 @@ def image(user):
     nM = NaverManager()
     file = request.files['file']  # 파일받기
     filename = file.filename  # 이름얻기
-    SR = filename.split(".")[0]  # 시리얼번호 추출
-    now = datetime.now()  # 시간얻기
-    f = filename.split(".")  # 파싱
-    sndF = f[0] + '_%s-%s-%s-%s-%s-%s.' % (now.year, now.month, now.day, now.hour, now.minute, now.second) + f[1]
-        # 파일이름 완성
-
-        # 이전에 저장한것 삭제
-    res = Memo.dememorization(f[0])
-    if res != False:
-        os.remove(res)
-
-    # 파일저장
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], sndF))
-    nM.sendIMAG(user, nM.IMAGE_URL + sndF)
+    print(filename)
+    SR = filename.split("_")[0]  # 시리얼번호 추출
+    ck = (SR in Memo.memory)
+    if ck ==False: # if it is firtst time to send file from mobile
+         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))#update file
+    elif  Memo.memory[SR] != file: # if it is a new file
+        res = Memo.dememorization(SR)#get old image name and rm log
+        if res != False:
+            os.remove(res)# rm old imag
+            # new 파일저장
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))#update file
+        
+    nM.sendIMAG(user, nM.IMAGE_URL + filename)
     # 방금 저장한 파일 기억
-    Memo.memorization(f[0], os.path.join(app.config['UPLOAD_FOLDER'], sndF))
+    Memo.memorization(SR, os.path.join(app.config['UPLOAD_FOLDER'], filename))
     return "TRUE"
 
 
@@ -96,7 +96,6 @@ def send_file(filename):
 def sign_up(temp_user_key):
     if request.method == 'GET':
         return render_template('regist.html')
-
     else:
         #get data from form
         serial = request.form['serial']
@@ -116,8 +115,13 @@ def sign_up(temp_user_key):
 
 if __name__ == "__main__":
 	#일반
-	ssl_cert = '/etc/letsencrypt/live/kitiot.tk/fullchain.pem'
-	ssl_key =  '/etc/letsencrypt/live/kitiot.tk/privkey.pem'
-	contextSSL =  (ssl_cert, ssl_key)
-	   #user ="u9-NF6yuZ8H8TAgj1uzqnQ"
-	app.run(host='0.0.0.0', port=443, debug = True, ssl_context = contextSSL)
+    ssl_cert = '/etc/letsencrypt/live/kitiot.tk/fullchain.pem'
+    ssl_key =  '/etc/letsencrypt/live/kitiot.tk/privkey.pem'
+    #Sch = Scheduler('dinnerTime','18-20','*/15',0)
+    Sch = Scheduler('dinnerTime','18-20','0-59','0-59')
+    Sch.scheduler()
+    contextSSL =  (ssl_cert, ssl_key)
+    app.run(host='0.0.0.0', port=443, debug = True, ssl_context = contextSSL)
+
+
+

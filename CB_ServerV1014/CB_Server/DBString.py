@@ -6,6 +6,7 @@ class DBString:
 		self.ST_NAME = "mobileSystem"
 		self.RQ_NAME = "request"
 		self.TI_NANE = "TempID"
+		self.MT_NAME = "messageTable"
 		#쿼리문 관리
 
 		##DB사용 쿼리문
@@ -61,12 +62,20 @@ class DBString:
 					) ENGINE=InnoDB default character set utf8 collate utf8_general_ci;
 				''' %(self.TI_NANE)
 
+		self.CT_MTQ='''
+				create table %s (
+					msg varchar(250),
+					idx int primary key auto_increment
+					) ENGINE=InnoDB default character set utf8 collate utf8_general_ci;
+				''' %(self.MT_NAME)
+
 
 		##테이블 선택 쿼리문
 		self.ST_UTQ = "select * from %s;"%(self.UT_NAME)
 		self.ST_STQ = "select * from %s;"%(self.ST_NAME) 
 		self.ST_RQSTQ = "select * from %s;"%(self.RQ_NAME)
 		self.ST_TIQ = "select * from %s;"%(self.TI_NANE)
+		self.ST_MTQ = "select * from %s;"%(self.MT_NAME)
 
 	# 유저관련 쿼리문
 	def getQ_ST_U_FromUserKey(self,UK):
@@ -81,6 +90,8 @@ class DBString:
 	    return "insert into %s values (\"%s\", \"%s\", \"%s\", \"%s\");"%(self.UT_NAME,user_key,serial,email,location)
 	def getQ_DT_U(self,user):
 	    return "delete from %s where %s.user_key =\"%s\";"%(self.UT_NAME,self.UT_NAME,user)
+	def getQ_ST_ALL_U(self):
+		return "select user_key from %s;"%(self.UT_NAME)
 
 	#
 	def getQ_IT_SR(self, SR):
@@ -111,6 +122,16 @@ class DBString:
 		return "select * from %s where %s.serial = \"%s\";"%(self.RQ_NAME,self.RQ_NAME,SR)
 	def getQ_DT_RQST_From_SR(self,SR):
 		return "delete from %s where %s.serial = \"%s\";"%(self.RQ_NAME,self.RQ_NAME,SR)
+
+    #메세지 관련 쿼리문
+	def getQ_ST_M_From_IDX(self,IDX):
+		return "select msg from %s where %s.idx = \"%d\";" % (self.MT_NAME, self.MT_NAME, IDX)
+	def getQ_IT_M(self, msg):
+		return "insert into %s values (\"%s\", NULL);" % (self.MT_NAME, msg)
+	def getQ_DT_M_From_IDX(self,IDX):
+		return "delete from %s where %s.idx = \"%s\";" % (self.MT_NAME, self.MT_NAME, IDX)
+	def getQ_MSG_Table_Len(self):
+		return "select count(*) from %s;" % (self.MT_NAME)
 
 
 

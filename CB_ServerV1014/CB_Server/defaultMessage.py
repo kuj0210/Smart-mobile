@@ -2,10 +2,8 @@ class MessageList:
     def __init__(self):
 
         #for chattingRoom EV
-        self.OPEN_MSG = """
-                안녕하세요!!! Smart Mobile 시스템입니다.
-                무엇을 도와드릴까요?
-                """
+        self.OPEN_MSG = """안녕하세요!!! Smart Mobile 시스템입니다.
+        무엇을 도와드릴까요?"""
         self.LEAVE_MSG = "나중에 또봐요~ :)"
         self.SUCESS_RECEVIED_MSG = " 기능이 접수완료 되었습니다."
         

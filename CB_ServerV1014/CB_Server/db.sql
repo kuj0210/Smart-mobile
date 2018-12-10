@@ -50,9 +50,30 @@ select * from request;
 
 
 
+#----------------------------------------------------------------;
 
 
+drop table messageTable;
+
+create table messageTable (
+	msg varchar(250),
+	idx int primary key auto_increment
+	) ENGINE=InnoDB default character set utf8 collate utf8_general_ci;
+
+insert into messageTable values('tip1.jpg',NULL);
+insert into messageTable values('tip2.jpg',NULL);
+insert into messageTable values('tip3.jpg',NULL);
+insert into messageTable values('tip4.jpg',NULL);
+insert into messageTable values('tip5.jpg',NULL);
+insert into messageTable values('recipe1.jpg',NULL);
+insert into messageTable values('recipe2.jpg',NULL);
+insert into messageTable values('recipe3.jpg',NULL);
+insert into messageTable values('recipe4.jpg',NULL);
+insert into messageTable values('recipe5.jpg',NULL);
+insert into messageTable values('recipe6.jpg',NULL);
+insert into messageTable values('recipe7.jpg',NULL);
+insert into messageTable values('recipe8.jpg',NULL);
+insert into messageTable values('recipe9.jpg',NULL);
 
 
-
-
+select * from messageTable;

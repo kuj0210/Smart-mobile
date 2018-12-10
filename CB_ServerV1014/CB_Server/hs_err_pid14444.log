@@ -1,0 +1,73 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 245366784 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2706), pid=14444, tid=14458
+#
+# JRE version: OpenJDK Runtime Environment (10.0.2+13) (build 10.0.2+13-Ubuntu-1ubuntu0.18.04.2)
+# Java VM: OpenJDK 64-Bit Server VM (10.0.2+13-Ubuntu-1ubuntu0.18.04.2, mixed mode, tiered, compressed oops, g1 gc, linux-amd64)
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport %p %s %c %d %P" (or dumping to /home/d134/NAC/CB_Server/core.14444)
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=UTF8 -ea -Xmx1024m 
+
+Host: Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz, 4 cores, 3G, Ubuntu 18.04.1 LTS
+Time: Sun Oct 14 21:30:32 2018 KST elapsed time: 15 seconds (0d 0h 0m 15s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000001b9e000):  VMThread "VM Thread" [stack: 0x00007ff39410d000,0x00007ff39420d000] [id=14458]
+
+Stack: [0x00007ff39410d000,0x00007ff39420d000],  sp=0x00007ff39420b0a0,  free space=1016k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xd27e04]
+V  [libjvm.so+0xd289ab]
+V  [libjvm.so+0x64d415]
+V  [libjvm.so+0xb2d728]
+V  [libjvm.so+0xb25f7d]
+V  [libjvm.so+0x7662ff]
+V  [libjvm.so+0x76653e]
+V  [libjvm.so+0x769500]
+V  [libjvm.so+0x7efa1c]
+V  [libjvm.so+0x7f06df]
+V  [libjvm.so+0x7f0b59]
+V  [libjvm.so+0x7162cf]
+V  [libjvm.so+0x71a3ba]
+V  [libjvm.so+0xd39f68]
+V  [libjvm.so+0xd387d1]
+V  [libjvm.so+0xd35a9b]
+V  [libjvm.so+0xd370be]
+V  [libjvm.so+0xd374e8]
+V  [libjvm.so+0xb33ca0]
+
+VM_Operation (0x00007ffd5949c0c0): G1IncCollectionPause, mode: safepoint, requested by thread 0x00000000019c1000
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x0000000001c7d5c0, length=11, elements={
+0x00000000019c1000, 0x0000000001baa000, 0x0000000001bac000, 0x0000000001bbe800,
+0x0000000001bc1000, 0x0000000001bc3000, 0x0000000001bc5000, 0x0000000001bc7000,
+0x0000000001c42800, 0x0000000001c7c800, 0x0000000001c86000
+}
+
+Java Threads: ( => current thread )
