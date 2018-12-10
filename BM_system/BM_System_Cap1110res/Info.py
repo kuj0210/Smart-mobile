@@ -29,10 +29,9 @@ class Info(Observer):
         if (PUSHCODE == self.PUSHCODE_P1): # 온습도 먼지   #넘어오는 코드별로 분류하여 행동처리 PUSHCODE == PUSHCODE_P1 이런식으로
             try:
                 r = self.Dust_Run()
-                r /= 2
                 h, t = self.DHT_Run()
-                res = "\n  -습도 : {0:.4f}per\n -온도 : {1:.4f}`C\n -먼지 농도 : {2:.2f}per\n 입니다.\n".format(h, t, r)
-                return self.RQ_PUSH + res
+                res = "현재 주변환경상태는\n  -습도 : {0:.4f}per\n -온도 : {1:.4f}`C\n -먼지 농도 : {2:.2f}per\n 입니다.\n".format(h, t, r)
+                return res
             except:
                 print("값 읽기 에러 - info-info")
                 return False
@@ -53,10 +52,9 @@ class Info(Observer):
 
         try:
             r = self.Dust_Run()
-            r /= 2
             h, t = self.DHT_Run()
-            print(h, t, r)  #센서 구동 확인용 print (습도, 온도, 먼지농도)
-            res = "Info-detecte\n  -습도 : {0:.4f}per\n -온도 : {1:.4f}`C\n -먼지 농도 : {2:.2f}per\n 입니다.\n".format(h, t, r)
+            #print(h, t, r)  #센서 구동 확인용 print (습도, 온도, 먼지농도)
+            res = "주변환경이 나빠 졌습니다.\n  -습도 : {0:.4f}per\n -온도 : {1:.4f}`C\n -먼지 농도 : {2:.2f}per\n 입니다.\n".format(h, t, r)
         except:
             print("값 읽기 에러 - info")
 
@@ -80,7 +78,7 @@ class Info(Observer):
             if r >= 0 and r <= 100:
                 break
         pi.stop()
-        return r
+        return r/2
 
     def DHT_Run(self):   #온습도 확인
         INTERVAL = 3

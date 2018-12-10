@@ -11,8 +11,8 @@ import prediction_simulation
 class Vo(Observer):
     # 사용자의 요청 구분 예)목소리들려줘 노래들려줘 구분, 외부 참조내용 내부에서 구분할때도 사용할것
     NAME = 'VO'
-    PUSHCODE_P1 = NAME+"목소리 들려줘"
-    PUSHCODE_P2 = NAME+"노래 들려줘"
+    PUSHCODE_P1 = NAME+"노래"
+    PUSHCODE_P2 = NAME+"목소리"
     #PUSHCODE_P3 = NAME+"-ob3"
 
     # 녹음시(주변 소리 크기가 울음인지 소음인지 구분없이 클때) 정보.
@@ -39,6 +39,7 @@ class Vo(Observer):
         self.RQ_PUSH = Vo.NAME+" 요청처리 메세지"
         self.reSet(Push)
         self.mPush = Push
+        self.setStatToAnotherForImage()
 
     #오버라이딩, 요청처리기능 만약 하위 클래스가 처리하는게 없다면 False 반환
     def processRequest(self, PUSHCODE):
@@ -46,18 +47,20 @@ class Vo(Observer):
         try:
             if (PUSHCODE == self.PUSHCODE_P1): # 목소리 재생
                 print("request vo")
-                file_path = "voice.wav"
-                self.wav_play(file_path)
-                print("play done")
-                tm.sleep(1)
-                return self.RQ_PUSH + PUSHCODE +"요청 종료."
-            elif (PUSHCODE == self.PUSHCODE_P2): #노래 재생
-                print("request vo")
                 file_path = "music.wav"
                 self.wav_play(file_path)
                 print("play done")
                 tm.sleep(1)
-                return self.RQ_PUSH + PUSHCODE + "요청 종료."
+                #return self.RQ_PUSH + PUSHCODE +"요청 종료."
+                return "노래 재생이 종료됬어요"
+            elif (PUSHCODE == self.PUSHCODE_P2): #노래 재생
+                print("request vo")
+                file_path = "voice.wav"
+                self.wav_play(file_path)
+                print("play done")
+                tm.sleep(1)
+                #return self.RQ_PUSH + PUSHCODE + "요청 종료."
+                return "목소리 재생이 종료됬어요"
             else:
                 return False
         except:
@@ -68,13 +71,29 @@ class Vo(Observer):
     # 오버라이딩, 관측 중 푸쉬해야하는 상황이 발생하면 정의해둔 메세지 리턴
     def detectEnvironment(self):
         res = False
+        self.Cry_Time_End = tm.time()
+        self.Noise_Time_End = tm.time()
+        cry_c = self.Cry_Time_End - self.Cry_Time_Strat
+        noise_c = self.Noise_Time_End - self.Noise_Time_Start
         # 녹화 및 분석.
         try:
+            if self.Noise_Check == True:
+                if noise_c > 60 * 5:
+                    self.Noise_Check = False
+            if self.Cry_Check == True:
+                if cry_c > 60 * 5:
+                    self.Cry_Check = False
+
             if (True):
                 # detection_flag = self.recode()
                 if self.recode():
                    res = self.detection2()
-
+                else:
+                    if self.Cry_Check == True and self.Msg_Check == True:
+                        m = "아이가 울지 않아요!"
+                        self.Msg_Check = False
+                        print(m)
+                        #return m
             if (res == False):
                 return False
             else:  # 필요시 elif등 사용할것
@@ -108,6 +127,7 @@ class Vo(Observer):
 
     #녹음 메소드
     def recode(self):
+        """
         #이전 코드에서 추가 부분
         #울음 및 소음에 시간제한을 위해 추가
         # 각각 3분으로 설정
@@ -124,12 +144,13 @@ class Vo(Observer):
         '''
         #밑의 60 == 1분 단위가 전부 초단위.
         if self.Noise_Check == True:
-            if noise_c > 60 * 3:
+            if noise_c > 60 * 5:
                 self.Noise_Check = False
 
         if self.Cry_Check == True:
-            if cry_c > 60 * 3:
+            if cry_c > 60 * 5:
                 self.Cry_Check = False
+        """
 
         #여기서 부터 이전코드
         audio = pyaudio.PyAudio()
@@ -148,13 +169,15 @@ class Vo(Observer):
             stream.stop_stream()
             stream.close()
             audio.terminate()
-
+            return False
+        """
             #여기도 추가분
             if self.Cry_Check == True and self.Msg_check == False:
                 msg = "아이가 울지 않아요."
                 self.Msg_Check == True
 
             return False
+        """
         for i in range(1, int(self.RATE / self.CHUNK * self.RECORD_SECONDS)):
             data = stream.read(self.CHUNK, exception_on_overflow=False)
             frames.append(data)
@@ -179,7 +202,7 @@ class Vo(Observer):
             result = "아이가 울고 있어요."
             self.Cry_Time_Strat = tm.time()
             self.Cry_Check = True
-            self.Msg_Check = False
+            self.Msg_Check = True
             print(result)
             #self.mPush.insertMSG('ALL', result)
 
